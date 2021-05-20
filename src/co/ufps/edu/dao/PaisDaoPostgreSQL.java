@@ -83,18 +83,18 @@ public class PaisDaoPostgreSQL implements PaisDao {
 	}
 	
 	
-	public Pais select(int id) {
+	public Pais select(String id) {
 		Pais paises = null;
 		
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_PAIS_BY_ID);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setString(1, id);
 			
 			ResultSet rs = conexion.query();
 			
 			while(rs.next()) {
 				
-				String id = rs.getString("id");
+			
 				String name = rs.getString("name");
 				
 				paises = new Pais(id, name);
@@ -107,6 +107,8 @@ public class PaisDaoPostgreSQL implements PaisDao {
 		return paises;
 		
 	}
+
+	
 
 	
 	

@@ -50,19 +50,19 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			showNewForm(request, response);
 			break;
 		case "/insert":
-			insertarUsuario(request, response);
+			insertarPais(request, response);
 			break;
 		case "/delete":
-			eliminarUsuario(request, response);
+			eliminarPais(request, response);
 			break;
 		case "/edit":
 			showEditForm(request, response);
 			break;
 		case "/update":
-			actualizarUsuario(request, response);
+			actualizarPais(request, response);
 			break;
 		default:
-			listUsuarios(request, response);
+			listPaises(request, response);
 			break;
 	
 	}
@@ -89,7 +89,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		dispatcher.forward(request, response);
 	}
 	
-	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) 
+	private void insertarPais(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, SQLException, IOException {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
@@ -105,7 +105,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = (request.getParameter("id"));
 		
 		Pais paisActual = paisDao.select(id);
 		
@@ -116,7 +116,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		
 	}
 	
-	private void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) 
+	private void actualizarPais(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, SQLException, IOException {
 		
 		String id = request.getParameter("id");
@@ -130,7 +130,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		response.sendRedirect("list");
 	}
 	
-	private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) 
+	private void eliminarPais(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, SQLException, IOException {
 		
 		String id = (request.getParameter("id"));
@@ -141,11 +141,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		response.sendRedirect("list");
 	}
 	
-	private void listUsuarios(HttpServletRequest request, HttpServletResponse response) 
+	private void listPaises(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, SQLException, IOException {
 		
-		List <Pais> listUsuarios = paisDao.selectAll();
-		request.setAttribute("listUsuarios", listUsuarios);
+		List <Pais> listPaises = paisDao.selectAll();
+		request.setAttribute("listPaises", listPaises);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("paislist.jsp");
 		dispatcher.forward(request, response);

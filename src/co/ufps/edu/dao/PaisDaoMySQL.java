@@ -94,7 +94,7 @@ public class PaisDaoMySQL implements PaisDao {
 			
 			while(rs.next()) {
 				
-				String id = rs.getString("id");
+				
 				String name = rs.getString("name");
 				
 				paises = new Pais(id, name);
@@ -107,5 +107,7 @@ public class PaisDaoMySQL implements PaisDao {
 		return paises;
 		
 	}
+
+	
 
 }

@@ -16,7 +16,7 @@ public class PaisDaoPostgreSQL implements PaisDao {
 	private static final String DELETE_PAIS_SQL = "DELETE FROM country WHERE id = ?;";
 	private static final String UPDATE_PAIS_SQL = "UPDATE country SET id = ?, namel = ?;";
 	private static final String SELECT_PAIS_BY_ID = "SELECT * FROM country WHERE id = ?;";
-	private static final String SELECT_ALL_PAISES = "SELECT * FROM cpuntry;";
+	private static final String SELECT_ALL_PAISES = "SELECT * FROM country;";
 	
 	private ConexionMySQL conexion;
 

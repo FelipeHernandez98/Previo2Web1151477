@@ -12,11 +12,11 @@ import co.ufps.edu.util.ConexionMySQL;
 public class PaisDaoMySQL implements PaisDao {
 	
 
-	private static final String INSERT_USUARIO_SQL = "INSERT INTO usuario (nombre, email, pais) VALUES (?, ?, ?);";
-	private static final String DELETE_USUARIO_SQL = "DELETE FROM usuario WHERE id = ?;";
-	private static final String UPDATE_USUARIO_SQL = "UPDATE usuario SET nombre = ?, email = ?, pais = ? WHERE id = ?;";
-	private static final String SELECT_USUARIO_BY_ID = "SELECT * FROM usuario WHERE id = ?;";
-	private static final String SELECT_ALL_USUARIOS = "SELECT * FROM usuario;";
+	private static final String INSERT_PAIS_SQL = "INSERT INTO country (id, name) VALUES (?, ?);";
+	private static final String DELETE_PAIS_SQL = "DELETE FROM country WHERE id = ?;";
+	private static final String UPDATE_PAIS_SQL = "UPDATE country SET id = ?, namel = ?;";
+	private static final String SELECT_PAIS_BY_ID = "SELECT * FROM country WHERE id = ?;";
+	private static final String SELECT_ALL_PAISES = "SELECT * FROM country;";
 	
 	private ConexionMySQL conexion;
 
@@ -27,7 +27,7 @@ public class PaisDaoMySQL implements PaisDao {
 	
 	public void insert(Pais pais) throws SQLException {
 		try {
-			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(INSERT_USUARIO_SQL);
+			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(INSERT_PAIS_SQL);
 			preparedStatement.setString(1, pais.getId());
 			preparedStatement.setString(2, pais.getName());
 			
@@ -39,7 +39,7 @@ public class PaisDaoMySQL implements PaisDao {
 	
 	public void delete (String id)  throws SQLException {
 		try {
-			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(DELETE_USUARIO_SQL);
+			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(DELETE_PAIS_SQL);
 			preparedStatement.setString(1, id);
 
 			conexion.execute();
@@ -50,7 +50,7 @@ public class PaisDaoMySQL implements PaisDao {
 	
 	public void update(Pais pais)  throws SQLException {
 		try {
-			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(UPDATE_USUARIO_SQL);
+			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(UPDATE_PAIS_SQL);
 			preparedStatement.setString(1, pais.getId());
 			preparedStatement.setString(2, pais.getName());
 			
@@ -64,7 +64,7 @@ public class PaisDaoMySQL implements PaisDao {
 		List <Pais> paises = new ArrayList<>();
 		
 		try {
-			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_ALL_USUARIOS);
+			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_ALL_PAISES);
 			
 			ResultSet rs = conexion.query();
 			
@@ -87,7 +87,7 @@ public class PaisDaoMySQL implements PaisDao {
 		Pais paises = null;
 		
 		try {
-			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_USUARIO_BY_ID);
+			PreparedStatement preparedStatement = (PreparedStatement) conexion.setPreparedStatement(SELECT_PAIS_BY_ID);
 			preparedStatement.setString(1, id);
 			
 			ResultSet rs = conexion.query();

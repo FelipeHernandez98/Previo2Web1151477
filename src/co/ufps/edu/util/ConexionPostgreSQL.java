@@ -22,6 +22,8 @@ public class ConexionPostgreSQL {
 		try {
 			Class.forName(driver).newInstance();
 			con = (Connection)DriverManager.getConnection(url+dbName,userName,password);
+			boolean valid = con.isValid(50000);
+	        System.out.println(valid ? "TEST OK" : "TEST FAIL");
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
